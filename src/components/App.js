@@ -13,7 +13,7 @@ class App extends Component {
         <div className="contact">Albert Einstein <a href="#">edit</a> <a href="#">delete</a></div>
         <div className="contact">Neils Bohr <a href="#">edit</a> <a href="#">delete</a></div>
         <div className="contact">Ryan Gosling <a href="#">edit</a> <a href="#">delete</a></div>
-        </div>
+        </div> 
       </div>
     );
   }
