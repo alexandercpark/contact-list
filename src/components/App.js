@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ContactList from './ContactList';
 
 class App extends Component {
   render() {
@@ -9,11 +10,7 @@ class App extends Component {
         <div className="heading">
           Contacts <button type="button">Add Contact</button>
         </div>
-        <div className="contactList">
-        <div className="contact">Albert Einstein <a href="#">edit</a> <a href="#">delete</a></div>
-        <div className="contact">Neils Bohr <a href="#">edit</a> <a href="#">delete</a></div>
-        <div className="contact">Ryan Gosling <a href="#">edit</a> <a href="#">delete</a></div>
-        </div> 
+        <ContactList />
       </div>
     );
   }
