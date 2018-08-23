@@ -1,16 +1,45 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import ContactList from './ContactList';
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      "contacts": [
+        {
+          "id": 70219577,
+          "name": "Albert Einstein",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg",
+          "email": "aeinstein@example.com",
+          "phone_number": "15555555555"
+        },
+        {
+          "id": 75827592,
+          "name": "Neils Bohr",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Niels_Bohr.jpg/440px-Niels_Bohr.jpg",
+          "email": "nbohr@example.com",
+          "phone_number": "14444444444"
+        },        {
+          "id": 23416723,
+          "name": "Ryan Gosling",
+          "image_url": "https://m.media-amazon.com/images/M/MV5BMTQzMjkwNTQ2OF5BMl5BanBnXkFtZTgwNTQ4MTQ4MTE@._V1_SY1000_CR0,0,790,1000_AL_.jpg",
+          "email": "rgosling@example.com",
+          "phone_number": "18888888888"
+        },
+      ]
+    }
+
+  }
+
   render() {
     return (
       <div className="App">
         <div className="heading">
           Contacts <button type="button">Add Contact</button>
         </div>
-        <ContactList />
+        <ContactList contacts={this.state.contacts}/>
       </div>
     );
   }
