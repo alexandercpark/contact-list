@@ -51,8 +51,7 @@ class AddContact extends Component {
     this.setState({
       id: this.generateId()
     },
-    this.props.addContact(this.state)
-    );
+    this.props.addContact(this.state));
   }
 
   render = () => (

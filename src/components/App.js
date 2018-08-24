@@ -4,8 +4,7 @@ import ContactList from './ContactList';
 import NavBar from './NavBar.js'
 import AddContact from './AddContact.js'
 
-import { Switch, Route } from 'react-router-dom'
-
+import { Switch, Route, withRouter } from 'react-router-dom'
 class App extends Component {
   constructor() {
     super();
@@ -38,12 +37,14 @@ class App extends Component {
     this.addContact = this.addContact.bind(this);
   }
 
-  addContact(contact, callback) {
+  redirect(path) {
+    this.props.history.push(path);
+  }
+  addContact(contact) {
     this.setState({
       contacts: this.state.contacts.concat(contact)
     },
-    callback()
-    );
+    this.redirect('/contacts'));
   }
   render() {
     return (
@@ -62,4 +63,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
