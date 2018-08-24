@@ -7,10 +7,7 @@ class ContactList extends Component {
   }
 
   render = () => (
-      <div className="contactList">
-      <div className="heading">
-        Contacts <button type="button">Add Contact</button>
-      </div>
+    <div className="contactList">
       {
         this.props.contacts.map( contact => 
           <Contact key={contact.id} contact={contact}/>
