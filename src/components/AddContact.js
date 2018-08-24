@@ -11,9 +11,17 @@ class AddContact extends Component {
       email: '',
       phone_number: ''
     };
+
+    this.updateContactName = this.updateContactName.bind(this);
+    this.updateContactImageUrl = this.updateContactImageUrl.bind(this);
+    this.updateContactEmail = this.updateContactEmail.bind(this);
+    this.updateContactPhoneNumber = this.updateContactPhoneNumber.bind(this);
+    this.addContactButtonClick = this.addContactButtonClick.bind(this);
   }
 
-  generateId = () => Math.round(Math.random() * 100000000);
+  generateId() {
+    return Math.round(Math.random() * 100000000);
+  };
 
   updateContactName(event) {
     this.setState({
@@ -50,11 +58,11 @@ class AddContact extends Component {
   render = () => (
     <div className="addContact-form">
       <form>
-        <input value={this.state.name} type="text" placeholder="name" onChange={event => this.updateContactName(event)}/>
-        <input value={this.state.image_url} type="text" placeholder="image url" onChange={event => this.updateContactImageUrl(event)}/>
-        <input value={this.state.email} type="text" placeholder="email" onChange={event => this.updateContactEmail(event)}/>
-        <input value={this.state.phone_number} type="text" placeholder="phone number" onChange={event => this.updateContactPhoneNumber(event)}/>
-        <button type="button" onClick={event => this.addContactButtonClick(event)}>Add Contact</button>
+        <input value={this.state.name} type="text" placeholder="name" onChange={this.updateContactName}/>
+        <input value={this.state.image_url} type="text" placeholder="image url" onChange={this.updateContactImageUrl}/>
+        <input value={this.state.email} type="text" placeholder="email" onChange={this.updateContactEmail}/>
+        <input value={this.state.phone_number} type="text" placeholder="phone number" onChange={this.updateContactPhoneNumber}/>
+        <button type="button" onClick={this.addContactButtonClick}>Add Contact</button>
       </form>
     </div>
   )
