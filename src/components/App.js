@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ContactList from './ContactList';
 import NavBar from './NavBar.js'
+import AddContact from './AddContact.js'
 
 import { Switch, Route } from 'react-router-dom'
 
@@ -43,6 +44,9 @@ class App extends Component {
         <Switch>
           <Route path='/contacts' render={() => 
             <ContactList contacts={this.state.contacts}/>
+          }/>
+          <Route path='/add' render={() => 
+            <AddContact/>
           }/>
         </Switch>
       </div>
