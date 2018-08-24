@@ -11,7 +11,7 @@ class App extends Component {
     super();
 
     this.state = {
-      "contacts": [
+      contacts: [
         {
           "id": 70219577,
           "name": "Albert Einstein",
@@ -35,8 +35,14 @@ class App extends Component {
       ]
     }
 
+    this.addContact = this.addContact.bind(this);
   }
 
+  addContact(contact) {
+    this.setState({
+      contacts: this.state.contacts.concat(contact)
+    });
+  }
   render() {
     return (
       <div className="App">
@@ -46,7 +52,7 @@ class App extends Component {
             <ContactList contacts={this.state.contacts}/>
           }/>
           <Route path='/add' render={() => 
-            <AddContact/>
+            <AddContact addContact={this.addContact}/>
           }/>
         </Switch>
       </div>

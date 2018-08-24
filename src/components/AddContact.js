@@ -48,11 +48,11 @@ class AddContact extends Component {
   }
 
   addContactButtonClick(event) {
-    const generatedId = this.generateId();
-
     this.setState({
-      id: generatedId
-    });
+      id: this.generateId()
+    },
+    this.props.addContact(this.state)
+    );
   }
 
   render = () => (
