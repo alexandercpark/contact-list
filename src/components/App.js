@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import ContactList from './ContactList';
+import NavBar from './NavBar.js'
+
+import { Switch, Route } from 'react-router-dom'
 
 class App extends Component {
   constructor() {
@@ -36,10 +39,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="heading">
-          Contacts <button type="button">Add Contact</button>
-        </div>
-        <ContactList contacts={this.state.contacts}/>
+        <NavBar />
+        <Switch>
+          <Route path='/contacts' render={() => 
+            <ContactList contacts={this.state.contacts}/>
+          }/>
+        </Switch>
       </div>
     );
   }
