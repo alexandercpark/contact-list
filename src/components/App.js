@@ -35,24 +35,33 @@ class App extends Component {
     }
 
     this.addContact = this.addContact.bind(this);
+    this.deleteContact = this.deleteContact.bind(this);
   }
 
   redirect(path) {
     this.props.history.push(path);
   }
+
   addContact(contact) {
     this.setState({
       contacts: this.state.contacts.concat(contact)
     },
     this.redirect('/contacts'));
   }
+
+  deleteContact(id) {
+    this.setState({
+      contacts: this.state.contacts.filter(contact => contact.id !== id)
+    });
+  }
+
   render() {
     return (
       <div className="App">
         <NavBar />
         <Switch>
           <Route path='/contacts' render={() => 
-            <ContactList contacts={this.state.contacts}/>
+            <ContactList contacts={this.state.contacts} deleteContact={this.deleteContact}/>
           }/>
           <Route path='/add' render={() => 
             <AddContact addContact={this.addContact}/>

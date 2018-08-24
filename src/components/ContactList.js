@@ -10,7 +10,7 @@ class ContactList extends Component {
     <div className="contactList">
       {
         this.props.contacts.map( contact => 
-          <Contact key={contact.id} contact={contact}/>
+          <Contact key={contact.id} contact={contact} deleteContact={this.props.deleteContact}/>
         )
       }
     </div> 
