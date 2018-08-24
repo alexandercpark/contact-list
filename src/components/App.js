@@ -38,10 +38,12 @@ class App extends Component {
     this.addContact = this.addContact.bind(this);
   }
 
-  addContact(contact) {
+  addContact(contact, callback) {
     this.setState({
       contacts: this.state.contacts.concat(contact)
-    });
+    },
+    callback()
+    );
   }
   render() {
     return (
