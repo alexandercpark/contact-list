@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-
 import { Redirect } from 'react-router-dom'
+
+import ContactForm from '../forms/ContactForm.js';
 
 class EditContact extends Component {
   constructor(props) {
@@ -9,25 +10,28 @@ class EditContact extends Component {
     const id = parseInt(props.match.params.id, 10);
 
     this.state = {
-      ...props.getContactById(id),
+      contact: {
+        ...props.getContactById(id)
+      },
       contactUpdated: false
     }
 
-    this.updateProperty = this.updateProperty.bind(this);
     this.updateContact = this.updateContact.bind(this);
-  }
-
-  updateProperty(event, field) {
-    this.setState({
-      [field]: event.target.value
-    });
+    this.onChange = this.onChange.bind(this);
   }
 
   updateContact() {
-    this.props.updateContact(this.state).then(() => {
+    this.props.updateContact(this.state.contact).then(() => {
       this.setState({
         contactUpdated: true
       })
+    });
+  }
+
+  onChange(contactState) {
+    debugger;
+    this.setState({
+      contact: contactState
     });
   }
 
@@ -39,10 +43,7 @@ class EditContact extends Component {
       return (
       <div className="editContact-form">
         <form>
-        <input value={this.state.name} type="text" placeholder="name" onChange={e => this.updateProperty(e, "name")}/>
-          <input value={this.state.image_url} type="text" placeholder="image url" onChange={e => this.updateProperty(e, "image_url")}/>
-          <input value={this.state.email} type="text" placeholder="email" onChange={e => this.updateProperty(e, "email")}/>
-          <input value={this.state.phone_number} type="text" placeholder="phone number" onChange={e => this.updateProperty(e, "phone_number")}/>
+          <ContactForm onChange={this.onChange} {...this.state.contact}/>
           <button type="button" onClick={this.updateContact}>Update Contact</button>
         </form>
       </div>
