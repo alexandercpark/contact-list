@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import '../css/App.css';
-import NavBar from './NavBar.js'
+import NavBar from './NavBar.js';
+import GoogleApi from './apis/GoogleApi';
 import ContactRouter from './routers/ContactRouter';
 
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -34,10 +35,13 @@ class App extends Component {
       ]
     }
 
+    GoogleApi.handleClientLoad();
+
     this.addContact = this.addContact.bind(this);
     this.deleteContact = this.deleteContact.bind(this);
     this.getContactById = this.getContactById.bind(this);
     this.updateContact = this.updateContact.bind(this);
+    this.loadContactsFromGoogle = this.loadContactsFromGoogle.bind(this);
   }
 
   addContact(contact) {
@@ -68,6 +72,16 @@ class App extends Component {
     );
   }
 
+  loadContactsFromGoogle() {
+    GoogleApi.handleSignInClick();
+
+    setTimeout(() => {
+      this.setState({
+        contacts: GoogleApi.loadedContactsFromGoogle
+      });
+    }, (7000));
+  }
+
   render() {
     return (
       <div className="App">
@@ -77,7 +91,7 @@ class App extends Component {
             <Redirect to='/contacts' />
             }/>
           <Route path='/contacts' render={(props) =>
-            <ContactRouter contacts={this.state.contacts} deleteContact={this.deleteContact} addContact={this.addContact} getContactById={this.getContactById} updateContact={this.updateContact} props={props}/>
+            <ContactRouter contacts={this.state.contacts} deleteContact={this.deleteContact} addContact={this.addContact} getContactById={this.getContactById} updateContact={this.updateContact} loadContactsFromGoogle={this.loadContactsFromGoogle} props={props}/>
             }/>
         </Switch>
       </div>

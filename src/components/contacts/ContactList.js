@@ -10,13 +10,14 @@ class ContactList extends Component {
     <div className="contactList">
       {
         this.props.contacts.map(contact => (
-            <div className="contact-container" key={contact.id}>
+            <span className="contact-container" key={contact.id}>
               <Contact contact={contact} deleteContact={this.props.deleteContact}/>
-            </div>
+            </span>
           )
         )
       }
-    </div> 
+      <button className="btn btn-primary" onClick={this.props.loadContactsFromGoogle}>Load contacts from Google</button>
+    </div>
   )
 
 }

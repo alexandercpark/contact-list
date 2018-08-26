@@ -16,7 +16,7 @@ class ContactRouter extends Component {
       <div className="container">
         <Switch>
         <Route exact path='/contacts' render={() => 
-          <ContactList contacts={this.props.contacts} deleteContact={this.props.deleteContact}/>
+          <ContactList contacts={this.props.contacts} deleteContact={this.props.deleteContact} loadContactsFromGoogle={this.props.loadContactsFromGoogle}/>
         }/>
         <Route path='/contacts/new' render={() => 
           <AddContact addContact={this.props.addContact}/>
