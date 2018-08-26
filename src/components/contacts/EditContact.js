@@ -29,7 +29,6 @@ class EditContact extends Component {
   }
 
   onChange(contactState) {
-    debugger;
     this.setState({
       contact: contactState
     });
