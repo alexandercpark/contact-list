@@ -9,7 +9,6 @@ import EditContact from '../contacts/EditContact';
 class ContactRouter extends Component {
   constructor(props) {
     super();
-
   }
 
   render() {

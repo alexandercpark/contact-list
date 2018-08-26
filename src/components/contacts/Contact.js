@@ -7,7 +7,9 @@ const Contact = (props) => {
   const contact = props.contact;
 
   const deleteContact = () => {
-    props.deleteContact(contact.id);
+    if (window.confirm('Are you sure you want to delete ' + contact.name + '?')) {
+      props.deleteContact(contact.id);
+    }
   }
 
   return (
