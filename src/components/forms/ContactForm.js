@@ -14,6 +14,7 @@ class ContactForm extends Component {
       },
       isValid: true
     };
+    this.state.isValid = this.isEmailValid() && this.isPhoneNumberValid();
 
     this.updateProperty = this.updateProperty.bind(this);
   }
