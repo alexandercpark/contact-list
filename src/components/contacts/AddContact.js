@@ -17,14 +17,9 @@ class AddContact extends Component {
   }
 
   addContact() {
-    var callback = () => this.props.addContact(this.state.contact).then(this.setState({
+    this.props.addContact(this.state.contact).then(this.setState({
         contactAdded: true
       })
-    );
-    this.setState({
-        contact: this.state.contact
-      },
-      () => callback()
     );
   }
 
