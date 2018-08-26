@@ -8,13 +8,15 @@ class EditContact extends Component {
     super();
 
     const id = parseInt(props.match.params.id, 10);
+    const contact = props.getContactById(id);
 
     this.state = {
       contact: {
-        ...props.getContactById(id)
+        ...contact
       },
       isValid: true,
-      contactUpdated: false
+      contactUpdated: false,
+      foundContact: contact !== undefined
     }
 
     this.updateContact = this.updateContact.bind(this);
@@ -40,11 +42,15 @@ class EditContact extends Component {
       return <Redirect to='/contacts' />
     }
 
+    if(!this.state.foundContact) {
+      return <div>No contact with id {this.props.match.params.id} found</div>
+    }
+
       return (
       <div className="editContact-form">
         <form>
           <ContactForm onChange={this.onChange} {...this.state.contact}/>
-          <button type="button" disabled={!this.state.isValid} onClick={this.updateContact}>Update Contact</button>
+          <button className="btn btn-primary" type="button" disabled={!this.state.isValid} onClick={this.updateContact}>Update Contact</button>
         </form>
       </div>
     )

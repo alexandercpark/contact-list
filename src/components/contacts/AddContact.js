@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 
 import ContactForm from '../forms/ContactForm.js';
 
+
 class AddContact extends Component {
   constructor(props) {
     super();
@@ -39,7 +40,7 @@ class AddContact extends Component {
       <div className="addContact-form">
         <form>
           <ContactForm onChange={this.onChange}/>
-          <button type="button" disabled={!this.state.isValid} onClick={this.addContact}>Add Contact</button>
+          <button className="btn btn-primary" type="button" disabled={!this.state.isValid} onClick={this.addContact}>Add Contact</button>
         </form>
       </div>
     )

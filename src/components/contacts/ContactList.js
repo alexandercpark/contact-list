@@ -9,8 +9,11 @@ class ContactList extends Component {
   render = () => (
     <div className="contactList">
       {
-        this.props.contacts.map(contact => 
-          <Contact key={contact.id} contact={contact} deleteContact={this.props.deleteContact}/>
+        this.props.contacts.map(contact => (
+            <div className="contact-container" key={contact.id}>
+              <Contact contact={contact} deleteContact={this.props.deleteContact}/>
+            </div>
+          )
         )
       }
     </div> 

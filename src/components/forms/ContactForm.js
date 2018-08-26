@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 
+import '../../css/ContactForm.css'
+
+
 class ContactForm extends Component {
   constructor(props) {
     super();
@@ -62,20 +65,30 @@ class ContactForm extends Component {
     let phoneNumberError;
 
     if(!this.isEmailValid()) {
-      emailError = <div className="error">INVALID EMAIL</div>
+      emailError = <span>: <span className="error">INVALID EMAIL</span></span>
     }
     if(!this.isPhoneNumberValid()) {
-      phoneNumberError = <div className="error">INVALID PHONE NUMBER</div>
+      phoneNumberError = <span>: <span className="error">INVALID PHONE NUMBER</span></span>
     }
 
     return (
       <div className="ContactForm">
-          <input value={this.state.contact.name} type="text" placeholder="name" onChange={e => this.updateProperty(e, "name")}/>
-          <input value={this.state.contact.image_url} type="text" placeholder="image url" onChange={e => this.updateProperty(e, "image_url")}/>
-          {emailError}
-          <input value={this.state.contact.email} type="text" placeholder="email" onChange={e => this.updateProperty(e, "email")}/>
-          {phoneNumberError}
-          <input value={this.state.contact.phone_number} type="text" placeholder="phone number" onChange={e => this.updateProperty(e, "phone_number")}/>
+        <div className="form-group">
+          <label htmlFor="contact-name">Name</label>
+          <input className="form-control" id="contact-name" value={this.state.contact.name} type="test" placeholder="name" onChange={e => this.updateProperty(e, "name")}/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="contact-image-url">Image Url</label>
+          <input className="form-control" id="contact-image-url" value={this.state.contact.image_url} type="text" placeholder="image url" onChange={e => this.updateProperty(e, "image_url")}/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="contact-email">Email {emailError} </label>
+          <input className="form-control" id="contact-email" value={this.state.contact.email} type="text" placeholder="email" onChange={e => this.updateProperty(e, "email")}/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="contact-phone-number">Phone Number {phoneNumberError} </label>
+          <input className="form-control" id="contact-phone-number" value={this.state.contact.phone_number} type="text" placeholder="phone number" onChange={e => this.updateProperty(e, "phone_number")}/>
+        </div>
       </div>
     )
   }

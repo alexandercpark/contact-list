@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
+import '../../css/Contact.css'
 
 const Contact = (props) => {
 
@@ -14,12 +15,14 @@ const Contact = (props) => {
 
   return (
     <div className="contact">
-      <img src={contact.image_url} style={{height: 100}} />
-      <div className="contact-name">{contact.name}</div>
-      <a href={"mailto:" + contact.email}>email</a>
-      <a href={"tel:"+ contact.phone_number}>call</a>
-      <Link to={"/contacts/edit/" + contact.id}>edit</Link>
-      <button onClick={deleteContact}>delete</button>
+      <img alt={contact.name} src={contact.image_url} style={{height: 100}} />
+      <div className="contact-name"><em>{contact.name}</em></div>
+
+      
+      <a className="contact-form-action" href={"mailto:" + contact.email}>email</a> 
+      <a className="contact-form-action" href={"tel:"+ contact.phone_number}>call</a>
+      <Link className="contact-form-action" to={"/contacts/edit/" + contact.id}>edit</Link>
+      <button className="btn btn-danger contact-form-action" onClick={deleteContact}>delete</button>
     </div>
   )
 }

@@ -13,7 +13,7 @@ class ContactRouter extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <Switch>
         <Route exact path='/contacts' render={() => 
           <ContactList contacts={this.props.contacts} deleteContact={this.props.deleteContact}/>
