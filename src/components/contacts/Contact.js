@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
+
 
 const Contact = (props) => {
 
@@ -14,7 +16,7 @@ const Contact = (props) => {
       {contact.name}
       <a href={"mailto:" + contact.email}>email</a>
       <a href={"tel:"+ contact.phone_number}>call</a>
-      <a href="#">edit</a> <button onClick={deleteContact}>delete</button>
+      <Link to={"/contacts/edit/" + contact.id}>edit</Link> <button onClick={deleteContact}>delete</button>
     </div>
   )
 }

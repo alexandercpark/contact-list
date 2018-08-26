@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
-import ContactList from './ContactList';
+import '../css/App.css';
 import NavBar from './NavBar.js'
-import AddContact from './AddContact.js'
+import ContactRouter from './routers/ContactRouter';
 
-import { Switch, Route, withRouter } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
+
 class App extends Component {
   constructor() {
     super();
@@ -36,17 +36,17 @@ class App extends Component {
 
     this.addContact = this.addContact.bind(this);
     this.deleteContact = this.deleteContact.bind(this);
-  }
-
-  redirect(path) {
-    this.props.history.push(path);
+    this.getContactById = this.getContactById.bind(this);
+    this.updateContact = this.updateContact.bind(this);
   }
 
   addContact(contact) {
-    this.setState({
-      contacts: this.state.contacts.concat(contact)
-    },
-    this.redirect('/contacts'));
+    return new Promise((resolve) => {
+      this.setState({
+        contacts: this.state.contacts.concat(contact)
+      },
+      resolve)}
+    );
   }
 
   deleteContact(id) {
@@ -55,21 +55,34 @@ class App extends Component {
     });
   }
 
+  getContactById(id) {
+    return this.state.contacts.find(contact => contact.id === id);
+  }
+
+  updateContact(updatedContact) {
+    return new Promise((resolve) => {
+    this.setState({
+      contacts: this.state.contacts.map(contact => contact.id === updatedContact.id ? updatedContact : contact)
+    },
+    resolve)}
+    );
+  }
+
   render() {
     return (
       <div className="App">
         <NavBar />
         <Switch>
-          <Route path='/contacts' render={() => 
-            <ContactList contacts={this.state.contacts} deleteContact={this.deleteContact}/>
-          }/>
-          <Route path='/add' render={() => 
-            <AddContact addContact={this.addContact}/>
-          }/>
+        <Route exact path='/' render={() => 
+            <Redirect to='/contacts' />
+            }/>
+          <Route path='/contacts' render={(props) =>
+            <ContactRouter contacts={this.state.contacts} deleteContact={this.deleteContact} addContact={this.addContact} getContactById={this.getContactById} updateContact={this.updateContact} props={props}/>
+            }/>
         </Switch>
       </div>
     );
   }
 }
 
-export default withRouter(App);
+export default App;

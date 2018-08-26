@@ -6,7 +6,7 @@ const NavBar = (props) => {
   return (
     <div className="contact-navbar">
       <Link to='/contacts'>All Contacts</Link>
-      <Link to='/add'>Add Contact</Link>
+      <Link to='/contacts/new'>Add Contact</Link>
     </div>
   )
 }
