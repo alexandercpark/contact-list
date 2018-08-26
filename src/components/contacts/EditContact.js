@@ -13,6 +13,7 @@ class EditContact extends Component {
       contact: {
         ...props.getContactById(id)
       },
+      isValid: true,
       contactUpdated: false
     }
 
@@ -28,9 +29,9 @@ class EditContact extends Component {
     });
   }
 
-  onChange(contactState) {
+  onChange(formData) {
     this.setState({
-      contact: contactState
+      ...formData
     });
   }
 
@@ -43,7 +44,7 @@ class EditContact extends Component {
       <div className="editContact-form">
         <form>
           <ContactForm onChange={this.onChange} {...this.state.contact}/>
-          <button type="button" onClick={this.updateContact}>Update Contact</button>
+          <button type="button" disabled={!this.state.isValid} onClick={this.updateContact}>Update Contact</button>
         </form>
       </div>
     )

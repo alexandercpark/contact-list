@@ -10,6 +10,7 @@ class AddContact extends Component {
     this.state = {
       contact: {},
       contactAdded: false,
+      isValid: true
     };
 
     this.addContact = this.addContact.bind(this);
@@ -23,9 +24,9 @@ class AddContact extends Component {
     );
   }
 
-  onChange(contactState) {
+  onChange(formData) {
     this.setState({
-      contact: contactState
+      ...formData
     });
   }
 
@@ -38,7 +39,7 @@ class AddContact extends Component {
       <div className="addContact-form">
         <form>
           <ContactForm onChange={this.onChange}/>
-          <button type="button" onClick={this.addContact}>Add Contact</button>
+          <button type="button" disabled={!this.state.isValid} onClick={this.addContact}>Add Contact</button>
         </form>
       </div>
     )
