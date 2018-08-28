@@ -35,13 +35,15 @@ class App extends Component {
       ]
     }
 
-    GoogleApi.handleClientLoad();
-
     this.addContact = this.addContact.bind(this);
     this.deleteContact = this.deleteContact.bind(this);
     this.getContactById = this.getContactById.bind(this);
     this.updateContact = this.updateContact.bind(this);
     this.loadContactsFromGoogle = this.loadContactsFromGoogle.bind(this);
+    this.setContacts = this.setContacts.bind(this);
+
+    GoogleApi.handleClientLoad();
+    GoogleApi.setCallback(this.setContacts);
   }
 
   addContact(contact) {
@@ -72,14 +74,14 @@ class App extends Component {
     );
   }
 
+  setContacts(contacts) {
+    this.setState({
+      contacts: contacts
+    });
+  }
+
   loadContactsFromGoogle() {
     GoogleApi.handleSignInClick();
-
-    setTimeout(() => {
-      this.setState({
-        contacts: GoogleApi.loadedContactsFromGoogle
-      });
-    }, (7000));
   }
 
   render() {
